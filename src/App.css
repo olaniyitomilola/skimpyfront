@@ -1,0 +1,95 @@
+* {
+  box-sizing: border-box;
+  font-size: calc(3px + 2vmin);
+
+}
+:root{
+  --lightgray: #667085;
+  --primarygreen: #3C8C30
+}
+
+body {
+  margin: 0 auto;
+  font-family: 'sans-serif' , 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+
+}
+
+#root {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.App {
+  width: clamp(450px, 100%, 1440px);
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: black;
+}
+
+.Dashboard{
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.NavBar{
+  width: clamp(200px, 100%, 250px);
+  height: 100%;
+  padding-top: 5rem;
+  border-right: 1px solid #EDEFF3;
+  background: #FFF;
+}
+.navElement{
+  display: flex;
+  align-items: center;
+  padding-left: 3.5rem;
+  margin-bottom: 0.5rem;
+}
+.navElement button{
+  background-color: transparent;
+  color: var(--lightgray);
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+
+}
+#activeNav{
+  border-radius: 8px;
+    background: rgba(239, 254, 237, 0.62);
+}
+.dashDisplay{
+  flex: 1;
+  padding: 10px;
+  padding-top: 5rem;
+  
+}
+.homeBoard{
+
+}
+
+.summaryBoards{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.summaries{
+  height: 10rem;
+  background-color: rgba(239, 254, 237, 0.62);
+  border-radius: 10px;
+  flex: 0.5 0.5 18rem;
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
