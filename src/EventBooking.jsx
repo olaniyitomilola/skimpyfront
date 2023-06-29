@@ -25,6 +25,7 @@ export default function EventBooking(){
 const EventsLoader = (props)=>{
     return(
            <table className='eventTable'>
+            <thead>Upcoming Events</thead>
                 <tr className='tableHead'>
                     <th>Date</th>
                     <th className='eventsDesc'>Event</th>
