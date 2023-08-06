@@ -46,6 +46,10 @@ function InventoryLoader(props){
         }
         
     } 
+
+    const handleEdit = async()=>{
+        
+    }
     
     return (
         props.inventory.map((item)=>{
