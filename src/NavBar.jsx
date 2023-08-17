@@ -6,7 +6,7 @@ function NavBar(props) {
       <Navlink active = {props.active === "Home"} linkName={'Home'} onClick = {()=> props.handleClick('Home')}/>
       <Navlink active = {props.active === "Inventory"} linkName={'Inventory'} onClick = {()=> props.handleClick('Inventory')}/>
       <Navlink active = {props.active === "Orders"} linkName={'Orders'} onClick = {()=> props.handleClick('Orders')}/>
-      <Navlink active = {props.active === "Event Bookings"} linkName={'Event Bookings'} onClick = {()=> props.handleClick('Event Bookings')}/>
+      <Navlink active = {props.active === "Clients"} linkName={'Clients'} onClick = {()=> props.handleClick('Clients')}/>
 
     </div>
   );

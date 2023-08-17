@@ -10,7 +10,10 @@ function DisplayPort({activeNav}) {
   return (
     <div className="displayPort">
 
-      {activeNav === "Home"? <Home/> : activeNav === "Event Bookings" ? <EventBooking/> : activeNav === "Orders"? <Orders/> : <Inventory/>}
+      {activeNav === "Home"? <Home/> :
+       activeNav === "Clients" ? <EventBooking/> : 
+       activeNav === "Orders"? <Orders/> : 
+       activeNav ==="Inventory"? <Inventory/> : 'Loading'}
     </div>
   );
 }

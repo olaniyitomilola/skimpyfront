@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react"
 
+ async function fetchData(){
+        const items = await  fetch('http://localhost:3002');
+        let res = await items.json();
+        return res
+        
+    }
+
 export default function Inventory(){
 
     const [inventory,setInventory] = useState([]);
 
     
     useEffect( ()=>{
-        async function fetchData(){
-        const items = await  fetch('http://localhost:3002');
-        let res = await items.json();
-        return res
-        
-    }
+       
     fetchData()
         .catch(console.error)
         .then((res)=> {setInventory(res)})
@@ -37,8 +39,13 @@ function InventoryLoader(props){
             method: 'delete'
             })
             let res = await req.json()
-            if(res.items){
-                props.setInventory(res.items)
+            if(res.items.success){
+                //set loading 
+                
+                let items = await fetchData();
+                items = await items.json();
+
+                props.setInventory(items)
             }
 
         }catch(error){
@@ -58,15 +65,15 @@ function InventoryLoader(props){
             //to remove this when we serve from db.
             {if(item){
                 return(
-                <div key={props.inventory.indexOf(item)} className="inventorybox">
-                    <img className="inventoryPicture" src={item.img} alt={"Picture of " +item.name} srcset="" />
+                <div key={(item.id)} className="inventorybox">
+                    <img className="inventoryPicture" src={item.img_sources} alt={"Picture of " +item.name} srcset="" />
                     <div className="inventoryDetails">
-                        <div className="inventoryName">{item.name}</div>
-                        <div  className="inventoryPrice">{"£" + item.price + " per " + item.unit}</div>
+                        <div className="inventoryName">{item.product_name}</div>
+                        <div  className="inventoryPrice">{"£" + item.price}</div>
                     </div>
                     <div className="buttons">
                         <button className="inventoryEdit">Edit</button>
-                        <button className="inventoryEdit" onClick={async ()=> await handleDelete(props.inventory.indexOf(item))}>Delete</button>
+                        <button className="inventoryEdit" onClick={async ()=> await handleDelete(item.id)}>Delete</button>
 
 
                     </div>
