@@ -149,6 +149,7 @@ body {
   color: #3C8C30;
   font-weight: 500;
   border-right: 1px solid #EDEFF3;
+  text-align: left;
 
 }
 
@@ -160,7 +161,15 @@ body {
 .eventTable td, .orderTable td{
   padding: 10px;
   color: #667085;
-  text-align: center;
+  text-align: left;
+}
+.eventTable button{
+  background-color: #3C8C30;
+  border: none;
+  padding: 10px 24px 10px 24px;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
 }
 .orderTable tr #tracking{
   width: clamp(100px,100%, 150px);

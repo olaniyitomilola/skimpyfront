@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 
  async function fetchData(){
-        const items = await  fetch('http://localhost:3002');
+        const items = await  fetch('http://localhost:3002/products');
         let res = await items.json();
         return res
         
@@ -35,19 +35,20 @@ function InventoryLoader(props){
 
     const handleDelete = async (key) =>{
         try{
-            let req = await fetch(`http://localhost:3002/${key}`,{
+            let req = await fetch(`http://localhost:3002/products/${key}`,{
             method: 'delete'
             })
             let res = await req.json()
-            if(res.items.success){
+            if(res.success){
                 //set loading 
+                //TODO: IMPLEMENT WELL
                 
                 let items = await fetchData();
                 items = await items.json();
 
                 props.setInventory(items)
             }
-
+            console.log(res)
         }catch(error){
             console.error(error)
         }

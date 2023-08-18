@@ -1,41 +1,48 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Calender from 'react-calendar'
 
 
 export default function EventBooking(){
-    const [value, onChangeValue] = useState(new Date())
+    const [clients, setClients]   = useState([]); 
     
-    const events = [
-        {"date" : "28-June-2023", "event" : "Birthday Party at Duxford", "Hours": "7Hrs"},
-        {"date" : "29-June-2023", "event" : "Birthday Party at Cambridge", "Hours": "10Hrs"},
-        {"date" : "29-June-2023", "event" : "Graduation Party at Langley", "Hours": "3Hrs"}
+    async function fetchClient(){
+        let req = await fetch('http://localhost:3002/users');
+        req = await req.json();
+        return req;
+    }
 
-
-    ]
+    useEffect(()=>{
+        fetchClient()
+        .catch(err=>console.error(err))
+        .then((result)=>setClients(result))
+    },[])
+   
     return(
             <>
-                   <Calender showNeighboringMonth = {false} onChange={onChangeValue} value={value}/>
-                    <EventsLoader events = {events}/>
+                    <ClientsLoader clients = {clients}/>
             </>
          
-            )
+    )
 }
 
 
-const EventsLoader = (props)=>{
+const ClientsLoader = (props)=>{
     return(
            <table className='eventTable'>
-            <thead>Upcoming Events</thead>
+            <thead>Clients</thead>
                 <tr className='tableHead'>
-                    <th>Date</th>
-                    <th className='eventsDesc'>Event</th>
-                    <th>Booking Hours</th>
+                    <th>Name</th>
+                    <th className='eventsDesc'>Phone</th>
+                    <th>Address</th>
+                    <th></th>
+                   
                 </tr>
-                {props.events.map((event)=>
+                {props.clients.map((client)=>
                     <tr>
-                        <td>{event.date}</td>
-                        <td>{event.event}</td>
-                        <td>{event.Hours}</td>
+                        <td>{client.first_name + " " +client.last_name}</td>
+                        <td>{client.phone}</td>
+                        <td>{client.address}</td>
+                        <td><button>View Orders</button></td>
                     </tr>
 
             
