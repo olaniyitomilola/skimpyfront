@@ -6,9 +6,15 @@ export default function EventBooking(){
     const [clients, setClients]   = useState([]); 
     
     async function fetchClient(){
-        let req = await fetch('http://localhost:3002/users');
-        req = await req.json();
-        return req;
+        try {
+            let req = await fetch('http://localhost:3002/users');
+            req = await req.json();
+            return req;
+            
+        } catch (error) {
+            console.log(error)
+        }
+        
     }
 
     useEffect(()=>{

@@ -86,49 +86,54 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 1rem;
+  gap:  2rem;
   flex-wrap: wrap;
 }
 
 .summaries{
+  position: relative;
   height: 10rem;
+  padding: 1rem;
   background-color: rgba(239, 254, 237, 0.62);
   border-radius: 10px;
   flex: 0.5 0.5 18rem;
   box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
-.react-calendar{
- 
-  color:rgba(239, 254, 237, 0.1);
+
+.summaries .summaryHeading{
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: #3C8C30;
 }
-.react-calendar__navigation{
+.summaryBody{
+  margin-top: 1rem;
+}
+.summaryBody .totalSales{
   display: flex;
+  width: 100%;
   flex-direction: row;
   justify-content: space-between;
-  width: 100%;
-  margin-bottom: 1rem;
-}
-.react-calendar__navigation button{
+  align-items: center;
+  font-size: 0.8rem;
   color: #3C8C30;
-  border: none;
-  padding: 10px;
 }
-.react-calendar__month-view__days button{
-  background-color: rgba(239, 254, 237, 0.62);
-  border: 1px solid #3C8C30;
-  border-radius: 5px;
-}
-.react-calendar__tile.react-calendar__tile--now.react-calendar__month-view__days__day {
-  background-color: #3C8C30;
-  color: #FFF;
-}
-.react-calendar__tile.react-calendar__month-view__days__day.react-calendar__month-view__days__day--neighboringMonth{
-  background-color: #F5F5F6;
-  color: #344054;
-}
-.react-calendar__month-view__weekdays__weekday{
-  color: #3C8C30;
+.summaryBody .totalSales span {
+  font-weight: 800;
+  font-size: 0.9rem;
 
+}
+.summaryFooter{
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  font-size: 0.7rem;
+  color: lightgreen;
+
+  
+}
+
+.summaryFooter.negative{
+  color: lightcoral;
 }
 .eventTable{
   width: 100%;
