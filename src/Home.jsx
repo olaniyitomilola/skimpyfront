@@ -5,7 +5,8 @@ function Home(){
     const[salesInfo, setSalesInfo] = useState(null);
     const [salesChange, setSalesChange] = useState(null)
     const [topSellingQuantity, setTopSellingQuantity] = useState(null)
-
+    const[topClients, setTopClients] = useState(null)
+    const months = ['January','February','March', 'April','May','June','July', 'August','September', 'October','November', 'December']
 
     async function fetchData(url){
         try {
@@ -48,8 +49,11 @@ function Home(){
     useEffect(()=>{
         fetchData('http://localhost:3002/admin/topselling')
         .catch(err=>console.error(err))
-        .then((res)=>setTopSellingQuantity(res.message.byQuantity))
-        .finally(()=>console.log(topSellingQuantity))
+        .then((res)=>{
+            setTopSellingQuantity(res.message.byQuantity)
+            setTopClients(res.message.topBuyer)
+        })
+        .finally(()=>console.log(topClients))
 
     },[salesInfo])
 
@@ -93,8 +97,30 @@ function Home(){
                      ""}
                     
                 </div>
-                <div className="summaries"></div>
-                <div className="summaries"></div>
+                <div className="summaries">
+                    <div className="summaryHeading">Top Customers</div>
+                    {topClients !== null?
+                    <div className="summaryBody">
+                        {topClients.map((client)=> <div className="totalSales">{client.first_name + " "+ client.last_name} : <span>{'£' + client.total_spent}</span></div> )}
+                    
+                    
+                    </div> :
+                     ""}
+                    
+                </div>
+                 <div className="summaries">
+                    <div className="summaryHeading">Users</div>
+                    {topClients !== null?
+                    <div className="summaryBody">
+                        <div className="totalSales"> Total : <span>{topSellingQuantity[0].total_quantity}</span></div>
+                        <div className="totalSales"> New Customers( {months[new Date().getMonth() -1]} ) : <span>{topSellingQuantity[1].total_quantity}</span></div>
+                    
+                    
+                    </div> :
+                     ""}
+                    
+                </div>
+                
                 <div className="summaries"></div>
                 <div className="summaries"></div>
             </div>
