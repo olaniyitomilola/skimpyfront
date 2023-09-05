@@ -6,6 +6,7 @@ function Home(){
     const [salesChange, setSalesChange] = useState(null)
     const [topSellingQuantity, setTopSellingQuantity] = useState(null)
     const[topClients, setTopClients] = useState(null)
+    const [clients, setClients] = useState(null);
     const months = ['January','February','March', 'April','May','June','July', 'August','September', 'October','November', 'December']
 
     async function fetchData(url){
