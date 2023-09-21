@@ -7,7 +7,7 @@ export default function EventBooking(){
     
     async function fetchClient(){
         try {
-            let req = await fetch('http://localhost:3002/users');
+            let req = await fetch('http://localhost:3002/admin/userorders');
             req = await req.json();
             return req;
             
@@ -20,12 +20,13 @@ export default function EventBooking(){
     useEffect(()=>{
         fetchClient()
         .catch(err=>console.error(err))
-        .then((result)=>setClients(result))
-    },[])
+        .then((result)=>setClients(result.message))
+        .finally(()=>console.log(clients))
+    },[clients])
    
     return(
             <>
-                    <ClientsLoader clients = {clients}/>
+                {clients? <ClientsLoader clients = {clients}/> : "Loading"}
             </>
          
     )
@@ -38,20 +39,17 @@ const ClientsLoader = (props)=>{
             <thead>Clients</thead>
                 <tr className='tableHead'>
                     <th>Name</th>
-                    <th className='eventsDesc'>Phone</th>
                     <th>Address</th>
-                    <th></th>
+                    <th>Month's Orders</th>
                    
                 </tr>
                 {props.clients.map((client)=>
-                    <tr>
-                        <td>{client.first_name + " " +client.last_name}</td>
-                        <td>{client.phone}</td>
-                        <td>{client.address}</td>
-                        <td><button>View Orders</button></td>
-                    </tr>
 
-            
+                    <tr key={client.id}> 
+                        <td>{client.first_name + " " +client.last_name}</td>
+                        <td>{client.address}</td>
+                        <td><button>{client.order_count}</button></td>
+                    </tr>
                     
                 )}
 

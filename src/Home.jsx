@@ -8,7 +8,8 @@ function Home(){
     const[topClients, setTopClients] = useState(null)
     const [clients, setClients] = useState(null);
     const months = ['January','February','March', 'April','May','June','July', 'August','September', 'October','November', 'December']
-
+    const [AllUsers,setAllUsers] = useState("");
+    const [monthUsers, setMonthUsers] = useState("")
     async function fetchData(url){
         try {
             let req = await fetch(url);
@@ -40,11 +41,16 @@ function Home(){
     useEffect(()=>{
         fetchData('http://localhost:3002/admin/allsales')
         .catch(err=>console.error(err))
-        .then((res)=>setSalesInfo(res.message))
+        .then((res)=>setSalesInfo(res.message)) 
+    },[])
 
-
-      
-        
+      useEffect(()=>{
+        fetchData('http://localhost:3002/admin/usersinfo')
+        .catch(err=>console.error(err))
+        .then((res)=>{
+            setAllUsers(res.message.allUsers)
+            setMonthUsers(res.message.monthUsers)
+        }) 
     },[])
 
     useEffect(()=>{
@@ -73,6 +79,7 @@ function Home(){
 
     return(
         <div className="homeBoard">
+            <h1>Analytics for {months[new Date().getMonth()]}</h1>
             <div className="summaryBoards">
 
                 <div className="summaries">
@@ -113,17 +120,14 @@ function Home(){
                     <div className="summaryHeading">Users</div>
                     {topClients !== null?
                     <div className="summaryBody">
-                        <div className="totalSales"> Total : <span>{topSellingQuantity[0].total_quantity}</span></div>
-                        <div className="totalSales"> New Customers( {months[new Date().getMonth() -1]} ) : <span>{topSellingQuantity[1].total_quantity}</span></div>
+                        <div className="totalSales"> Total : <span>{AllUsers.length}</span></div>
+                        <div className="totalSales"> New Customers( {months[new Date().getMonth()]} ) : <span>{monthUsers}</span></div>
                     
                     
                     </div> :
                      ""}
                     
                 </div>
-                
-                <div className="summaries"></div>
-                <div className="summaries"></div>
             </div>
      
 

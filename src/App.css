@@ -146,7 +146,6 @@ body {
 .orderTable tr{
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
 
 
 }
@@ -154,7 +153,6 @@ body {
   color: #3C8C30;
   font-weight: 500;
   border-right: 1px solid #EDEFF3;
-  text-align: left;
 
 }
 
@@ -166,7 +164,6 @@ body {
 .eventTable td, .orderTable td{
   padding: 10px;
   color: #667085;
-  text-align: left;
 }
 .eventTable button{
   background-color: #3C8C30;
@@ -177,14 +174,15 @@ body {
   cursor: pointer;
 }
 .orderTable tr #tracking{
-  width: clamp(100px,100%, 150px);
+  width: clamp(100px,100%, 450px);
+  font-size: 0.8rem;
 }
 
 .orderTable tr #products {
   width: clamp(250px, 100%, 350px);
 }
 .orderTable tr #client {
-  width: clamp(150px, 100%, 200px);
+  width: clamp(150px, 100%, 250px);
 }
 
 .orderTable tr #address {
